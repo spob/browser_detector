@@ -4,9 +4,9 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "browser_detector"
+    gem.name = "spob_browser_detector"
     gem.summary = %Q{Determines the name and version of the browser currently making a request.}
-    gem.description = %Q{Determines the name and version of the browser currently making a request.}
+    gem.description = %Q{Determines the name and version of the browser currently making a request. I forked this because gemcutter did not appear to have the latest version of the gem.}
     gem.email = "jason@lookforwardenterprises.com"
     gem.homepage = "http://github.com/midas/browser_detector"
     gem.authors = ["C. Jason Harrelson (midas)"]
