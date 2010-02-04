@@ -4,5 +4,5 @@ coverage
 rdoc
 pkg
 .idea
-spob_browser_detector.gemspec
-spob_browser_detector.gem
+*.gemspec
+*.gem
