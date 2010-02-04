@@ -8,4 +8,4 @@ module SpobBrowserDetector
   VERSION = '1.0.0'
 end
 
-ActionView::Base.send( :include, BrowserDetector::Rails::ViewHelpers ) if defined?( ActionView )
+ActionView::Base.send( :include, SpobBrowserDetector::Rails::ViewHelpers ) if defined?( ActionView )
