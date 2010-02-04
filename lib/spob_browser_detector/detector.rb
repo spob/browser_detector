@@ -182,6 +182,10 @@ module SpobBrowserDetector
     end
     
     protected
+
+    def resolve_version_for_unknown
+      '0'
+    end
     
     def resolve_version_for_ie
       match = /.*msie (.*); windows nt 5.1/.match( @ua )
