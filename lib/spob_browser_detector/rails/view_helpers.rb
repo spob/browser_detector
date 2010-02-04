@@ -53,7 +53,7 @@ module SpobBrowserDetector
       
       def setup_detector
         @g_browser_detector = session[:g_browser_detector] if respond_to?( :session )
-        @g_browser_detector ||= BrowserDetector::Detector.new( request.env['HTTP_USER_AGENT'] )
+        @g_browser_detector ||= SpobBrowserDetector::Detector.new( request.env['HTTP_USER_AGENT'] )
       end
       
     end
