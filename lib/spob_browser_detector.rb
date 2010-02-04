@@ -1,10 +1,10 @@
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-require 'browser_detector/detector'
-require 'browser_detector/rails/view_helpers'
+require 'spob_browser_detector/detector'
+require 'spob_browser_detector/rails/view_helpers'
 
-module BrowserDetector
+module SpobBrowserDetector
   VERSION = '1.0.0'
 end
 

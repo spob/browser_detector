@@ -1,4 +1,4 @@
-module BrowserDetector
+module SpobBrowserDetector
   module Rails
     module ViewHelpers
       

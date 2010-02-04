@@ -1,4 +1,4 @@
-module BrowserDetector 
+module SpobBrowserDetector 
   
   # The Detector provides the ability to determine browser information from the user 
   # agent string.
