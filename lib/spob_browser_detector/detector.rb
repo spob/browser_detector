@@ -200,6 +200,10 @@ module SpobBrowserDetector
       end
       return match.nil? ? '0' : match[2]
     end
+
+    def resolve_version_for_konqueror
+      return '0'
+    end
     
     def resolve_version_for_opera
       match = /.*\((.*); intel.*version\/(.*)/.match( @ua )
