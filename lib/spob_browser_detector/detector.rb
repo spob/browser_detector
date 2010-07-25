@@ -237,5 +237,9 @@ module SpobBrowserDetector
     def browser_full_name_for_safari
       "Safari #{browser_version}"
     end
+
+    def resolve_version_for_netscape
+      "Netscape #{browser_version}"
+    end
   end
 end
