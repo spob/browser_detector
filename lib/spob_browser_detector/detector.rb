@@ -1,17 +1,17 @@
-module SpobBrowserDetector 
-  
-  # The Detector provides the ability to determine browser information from the user 
+module SpobBrowserDetector
+
+  # The Detector provides the ability to determine browser information from the user
   # agent string.
   #
   class Detector
-    
+
     attr_reader :ua
-    
+
     def initialize( user_agent )
       @ua = user_agent.downcase unless user_agent.nil?
       @version_regex = /(\d*)\.(\d*)\.*(\d*)\.*(\d*)/
     end
-    
+
     # Returns true if the browser matches the options ent in, otherwise returns false.
     #
     # === Request
@@ -30,7 +30,7 @@ module SpobBrowserDetector
       minor_version = options[:minor_version]
       build_version = options[:build_version]
       revision_version = options[:revision_version]
-      
+
       name ||= self.browser_name
       version ||= self.browser_version
       major_version ||= self.browser_version_major
@@ -44,9 +44,9 @@ module SpobBrowserDetector
       minor_version = minor_version.to_s.strip
       build_version = build_version.to_s.strip
       revision_version = revision_version.to_s.strip
-      
+
       self.browser_name == name && self.browser_version == version && self.browser_version_major == major_version &&
-        self.browser_version_minor == minor_version #&& self.browser_version_build == build_version && 
+        self.browser_version_minor == minor_version #&& self.browser_version_build == build_version &&
         #self.browser_version_revision == revision_version
     end
 
@@ -64,13 +64,13 @@ module SpobBrowserDetector
           else
             if ua.index( 'msie' ) && !ua.index( 'opera' ) && !ua.index( 'webtv' )
               if ua.index( 'windows ce' )
-                'ie' + '_ce' #+ ua[ua.index( 'msie' ) + 5].chr 
+                'ie' + '_ce' #+ ua[ua.index( 'msie' ) + 5].chr
               else
                 'ie' # + ua[ua.index( 'msie' ) + 5].chr
               end
             elsif ua.include?( 'opera' )
               'opera'
-            elsif ua.include?( 'konqueror' ) 
+            elsif ua.include?( 'konqueror' )
               'konqueror'
             elsif ua.include?( 'applewebkit/' )
               'safari'
@@ -112,19 +112,19 @@ module SpobBrowserDetector
       return match[2].to_i.to_s unless match.nil? || match.size < 3
       '0'
     end
-    
+
     def browser_version_build
       match = @version_regex.match( browser_version )
       return match[3].to_i.to_s unless match.nil? || match.size < 4 || match[3].empty? || match[3].nil?
       '0'
     end
-    
+
     def browser_version_revision
       match = @version_regex.match( browser_version )
       return match[4].to_i.to_s unless match.nil? || match.size < 5 || match[4].empty? || match[4].nil?
       '0'
     end
-    
+
     # Returns the browser name concatenated with the browser version.  for example, 'ie7'.
     #
     # === Request
@@ -133,7 +133,7 @@ module SpobBrowserDetector
     def browser_full_name
       self.send( "browser_full_name_for_#{self.browser_name}".to_sym )
     end
-    
+
     # Returns the browser name concatenated with the browser version.  for example, 'ie7'.
     #
     # === Request
@@ -142,7 +142,7 @@ module SpobBrowserDetector
     def browser_id
       browser_name + browser_version.gsub( /\./, '' )
     end
-    
+
     # Returns true if the current browser type can handle PNGs.
     #
     def can_use_png?
@@ -159,12 +159,12 @@ module SpobBrowserDetector
     # A list of all the mobile browser types that Guilded recognizes.
     #
     def self.all_mobile_browsers
-      %w( ie_ce4 iphone )
+      %w( ie_ce4 ie_ce iphone )
     end
-    
+
     def self.user_agents
-      { 
-        :ie55 => 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)', 
+      {
+        :ie55 => 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)',
         :ie60 => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)',
         :ie70 => 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
         :ie80 => 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)',
@@ -180,18 +180,18 @@ module SpobBrowserDetector
         :chrome4 => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.221.8 Safari/532.2'
       }
     end
-    
+
     protected
 
     def resolve_version_for_unknown
       '0'
     end
-    
+
     def resolve_version_for_ie
       match = /.*msie (.*); windows nt 5.1/.match( @ua )
       return match.nil? ? '0' : match[1]
     end
-    
+
     def resolve_version_for_firefox
       match = /.*\((.*); u;.*firefox\/(.*) \(.net.*/.match( @ua )
       if match.nil?
@@ -204,12 +204,12 @@ module SpobBrowserDetector
     def resolve_version_for_konqueror
       return '0'
     end
-    
+
     def resolve_version_for_opera
       match = /.*\((.*); intel.*version\/(.*)/.match( @ua )
       return match.nil? ? '0' : match[2]
     end
-    
+
     def resolve_version_for_safari
       match = /.* safari\/(.*)/.match( @ua )
       rev = match.nil? ? 0 : match[1]
@@ -221,19 +221,19 @@ module SpobBrowserDetector
         else '0.0.0.0'
       end
     end
-    
+
     def browser_full_name_for_ie
       "Internet Explorer #{browser_version}"
     end
-    
+
     def browser_full_name_for_firefox
       "Firefox #{browser_version}"
     end
-    
+
     def browser_full_name_for_opera
       "Opera #{browser_version}"
     end
-    
+
     def browser_full_name_for_safari
       "Safari #{browser_version}"
     end
