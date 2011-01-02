@@ -192,6 +192,11 @@ module SpobBrowserDetector
       return match.nil? ? '0' : match[1]
     end
 
+    def resolve_version_for_ie_ce
+      match = /.*msie (.*); windows nt 5.1/.match( @ua )
+      return match.nil? ? '0' : match[1]
+    end
+
     def resolve_version_for_firefox
       match = /.*\((.*); u;.*firefox\/(.*) \(.net.*/.match( @ua )
       if match.nil?
